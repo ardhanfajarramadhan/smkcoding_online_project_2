@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 fun httpClient(): OkHttpClient {
     val logInterceptor = HttpLoggingInterceptor()
-    logInterceptor.level = HttpLoggingInterceptor.Level.BODY
+    logInterceptor.level = HttpLoggingInterceptor.Level.BODY 
 
     val builder = OkHttpClient.Builder()
 
