@@ -1,26 +1,32 @@
-package com.coding.smkcoding_project_2
+package com.coding.smkcoding_project_2.adapter
 
-import GithubFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.coding.smkcoding_project_2.*
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
 
-    private val JUMLAH_MENU = 3
+    private val JUMLAH_MENU = 5
     override fun createFragment(position: Int) : Fragment {
         return when(position){
             0 -> {
-                MyFriendFragment()
+                WorldFragment()
             }
             1 -> {
-                GithubFragment()
+                ProvinceFragment()
             }
             2 -> {
-                ProfileFragment()
+                RegionFragment()
+            }
+            3 -> {
+                WebFragment()
+            }
+            4 -> {
+                TutorialFragment()
             }
             else -> {
-                GithubFragment()
+                WorldFragment()
             }
         }
     }

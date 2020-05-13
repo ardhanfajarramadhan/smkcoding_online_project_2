@@ -1,6 +1,6 @@
 package com.coding.smkcoding_project_2.data
 
-import GithubUserItem
+import com.coding.smkcoding_project_2.GithubUserItem
 import retrofit2.Call
 import retrofit2.http.GET
 

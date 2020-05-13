@@ -1,12 +1,12 @@
+package com.coding.smkcoding_project_2
+
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.Nullable
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.coding.smkcoding_project_2.GithubUserAdapter
-import com.coding.smkcoding_project_2.R
+import com.coding.smkcoding_project_2.adapter.GithubUserAdapter
 import com.coding.smkcoding_project_2.data.GithubService
 import com.coding.smkcoding_project_2.data.apiRequest
 import com.coding.smkcoding_project_2.data.httpClient
@@ -14,33 +14,30 @@ import com.coding.smkcoding_project_2.util.dismissLoading
 import com.coding.smkcoding_project_2.util.showLoading
 import com.coding.smkcoding_project_2.util.tampilToast
 import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_github.*
+import kotlinx.android.synthetic.main.fragment_region.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-/**
- * A simple [Fragment] subclass.
- * Use the [CardFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class GithubFragment : Fragment() {
+
+class RegionFragment : Fragment() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-// Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_github, container, false)
+        return inflater.inflate(R.layout.fragment_region, container, false)
     }
-    override fun onViewCreated(
-        view: View,
-        @Nullable savedInstanceState: Bundle?
-    ) {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        callApiGetGithubUser()
+
+//        callApiGetGithubUser()
     }
+
     private fun callApiGetGithubUser() {
         showLoading(context!!, swipeRefreshLayout)
         val httpClient = httpClient()
@@ -51,7 +48,8 @@ class GithubFragment : Fragment() {
                 dismissLoading(swipeRefreshLayout)
             }
             override fun onResponse(call: Call<List<GithubUserItem>>, response:
-            Response<List<GithubUserItem>>) {
+            Response<List<GithubUserItem>>
+            ) {
                 dismissLoading(swipeRefreshLayout)
                 when {
                     response.isSuccessful ->
@@ -69,13 +67,15 @@ class GithubFragment : Fragment() {
             }
         })
     }
+
     private fun tampilGithubUser(githubUsers: List<GithubUserItem>) {
-        rv_listGithub.layoutManager = LinearLayoutManager(context)
-        rv_listGithub.adapter = GithubUserAdapter(context!!, githubUsers) {
+        listGithubUser.layoutManager = LinearLayoutManager(context)
+        listGithubUser.adapter = GithubUserAdapter(context!!, githubUsers) {
             val githubUser = it
             tampilToast(context!!, githubUser.login)
         }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         this.clearFindViewByIdCache()
