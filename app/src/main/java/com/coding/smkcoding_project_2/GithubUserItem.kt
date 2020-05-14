@@ -2,6 +2,7 @@ package com.coding.smkcoding_project_2
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class GithubUserItem(
     @SerializedName("avatar_url")

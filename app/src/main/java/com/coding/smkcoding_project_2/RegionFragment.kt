@@ -35,20 +35,25 @@ class RegionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        callApiGetGithubUser()
+        callApiGetGithubUser()
     }
 
     private fun callApiGetGithubUser() {
         showLoading(context!!, swipeRefreshLayout)
+
         val httpClient = httpClient()
         val apiRequest = apiRequest<GithubService>(httpClient)
+
         val call = apiRequest.getUsers()
         call.enqueue(object : Callback<List<GithubUserItem>> {
+
             override fun onFailure(call: Call<List<GithubUserItem>>, t: Throwable) {
                 dismissLoading(swipeRefreshLayout)
             }
-            override fun onResponse(call: Call<List<GithubUserItem>>, response:
-            Response<List<GithubUserItem>>
+
+            override fun onResponse(
+                call: Call<List<GithubUserItem>>, response:
+                Response<List<GithubUserItem>>
             ) {
                 dismissLoading(swipeRefreshLayout)
                 when {
