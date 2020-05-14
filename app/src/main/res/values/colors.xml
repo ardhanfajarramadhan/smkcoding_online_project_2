@@ -3,4 +3,12 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="colorTengah">#00b3b3</color>
+    <color name="colorAtas">#009e9e</color>
+    <color name="colorBawah">#03DAC5</color>
+
+    <color name="colorMid">#0091ff</color>
+    <color name="colorTop">#0082e6</color>
+    <color name="colorBot">#0089ef</color>
 </resources>

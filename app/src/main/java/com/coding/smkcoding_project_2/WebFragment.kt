@@ -32,7 +32,7 @@ class WebFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mWebView = webView
-        mWebView.loadUrl("https://www.google.com")
+        mWebView.loadUrl("https://news.google.com/covid19/map?hl=id&mid=/m/01vfwd&gl=ID&ceid=ID:id")
         val webSetting = mWebView.settings
         webSetting.javaScriptEnabled = true
         mWebView.webViewClient = WebViewClient()
