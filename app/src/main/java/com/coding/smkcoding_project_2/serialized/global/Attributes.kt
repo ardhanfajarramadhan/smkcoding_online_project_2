@@ -1,4 +1,4 @@
-package com.coding.smkcoding_project_2.serialized
+package com.coding.smkcoding_project_2.serialized.global
 
 
 import com.google.gson.annotations.SerializedName
