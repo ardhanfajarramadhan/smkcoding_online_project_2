@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.coding.smkcoding_project_2.adapter.GithubUserAdapter
-import com.coding.smkcoding_project_2.data.GithubService
+import com.coding.smkcoding_project_2.data.ApiService
 import com.coding.smkcoding_project_2.data.apiRequest
 import com.coding.smkcoding_project_2.data.httpClient
 import com.coding.smkcoding_project_2.util.dismissLoading
@@ -42,7 +42,7 @@ class RegionFragment : Fragment() {
         showLoading(context!!, swipeRefreshLayout)
 
         val httpClient = httpClient()
-        val apiRequest = apiRequest<GithubService>(httpClient)
+        val apiRequest = apiRequest<ApiService>(httpClient)
 
         val call = apiRequest.getUsers()
         call.enqueue(object : Callback<List<GithubUserItem>> {
