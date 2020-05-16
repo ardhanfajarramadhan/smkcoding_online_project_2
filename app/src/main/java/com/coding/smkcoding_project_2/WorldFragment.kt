@@ -13,7 +13,6 @@ import com.coding.smkcoding_project_2.data.httpClient
 import com.coding.smkcoding_project_2.serialized.global.GlobalDataItem
 import com.coding.smkcoding_project_2.util.tampilToast
 import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_region.*
 import kotlinx.android.synthetic.main.fragment_world.*
 import retrofit2.Call
 import retrofit2.Callback

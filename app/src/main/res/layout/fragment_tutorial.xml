@@ -23,13 +23,14 @@
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/hand"/>
+            android:src="@drawable/hand"
+            android:contentDescription="@string/imageDesc" />
 
         <TextView
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LAKUKAN 5 HAL"
+            android:text="@string/lakukan_5_hal"
             android:gravity="center"
             android:textStyle="bold"
             android:textSize="40sp"/>
@@ -38,7 +39,7 @@
             android:layout_margin="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bantu hentikan virus corona"
+            android:text="@string/bantu"
             android:gravity="center"
             android:textStyle="bold"
             android:textSize="20sp"/>
@@ -60,8 +61,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="1"
-                    android:textSize="15dp"
+                    android:text="@string/number1"
+                    android:textSize="16sp"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textColor="#d50000"/>
@@ -70,9 +71,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TANGAN Cuci lebih sering"
-                    android:textSize="16dp"
-                    android:gravity="left"/>
+                    android:text="@string/tangan"
+                    android:textSize="16sp"
+                    android:gravity="start"/>
             </LinearLayout>
 
             <LinearLayout
@@ -85,8 +86,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="2"
-                    android:textSize="15dp"
+                    android:text="@string/number2"
+                    android:textSize="16sp"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textColor="#d50000"/>
@@ -95,9 +96,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="SIKU Untuk menutup mulut saat batuk"
-                    android:textSize="16dp"
-                    android:gravity="left"/>
+                    android:text="@string/siku"
+                    android:textSize="16sp"
+                    android:gravity="start"/>
             </LinearLayout>
 
             <LinearLayout
@@ -110,8 +111,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="3"
-                    android:textSize="15dp"
+                    android:text="@string/number3"
+                    android:textSize="16sp"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textColor="#d50000"/>
@@ -120,9 +121,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="WAJAH Jangan disentuh"
-                    android:textSize="16dp"
-                    android:gravity="left"/>
+                    android:text="@string/wajah"
+                    android:textSize="16sp"
+                    android:gravity="start"/>
             </LinearLayout>
 
             <LinearLayout
@@ -135,8 +136,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="4"
-                    android:textSize="15dp"
+                    android:text="@string/number4"
+                    android:textSize="16sp"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textColor="#d50000"/>
@@ -145,9 +146,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="JARAK Jaga jarak aman"
-                    android:textSize="16dp"
-                    android:gravity="left"/>
+                    android:text="@string/jarak"
+                    android:textSize="16sp"
+                    android:gravity="start"/>
             </LinearLayout>
 
             <LinearLayout
@@ -160,8 +161,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="5"
-                    android:textSize="15dp"
+                    android:text="@string/number5"
+                    android:textSize="16sp"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textColor="#d50000"/>
@@ -170,9 +171,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="RUMAH Usahakan di rumah aja"
-                    android:textSize="16dp"
-                    android:gravity="left"/>
+                    android:text="@string/rumah"
+                    android:textSize="16sp"
+                    android:gravity="start"/>
             </LinearLayout>
 
         </LinearLayout>

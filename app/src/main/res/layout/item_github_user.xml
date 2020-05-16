@@ -15,9 +15,10 @@
         <ImageView
             android:id="@+id/imgUser"
             android:layout_width="72dp"
-            android:layout_height="72dp"/>
+            android:layout_height="72dp"
+            android:contentDescription="@string/imageDesc" />
         <LinearLayout
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -25,13 +26,13 @@
                 android:id="@+id/txtUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nama"
+                android:text="@string/name"
                 android:textSize="18sp"/>
             <TextView
                 android:id="@+id/txtUserRepo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:text="@string/email"
                 android:textSize="16sp"/>
         </LinearLayout>
     </LinearLayout>

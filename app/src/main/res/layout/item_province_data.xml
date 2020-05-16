@@ -22,7 +22,7 @@
             android:id="@+id/tvNameProv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nama Provinsi"
+            android:text="@string/nama_provinsi"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
     </LinearLayout>
 
@@ -30,7 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="4dp"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -43,7 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Positif"
+                    android:text="@string/positif"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
@@ -52,7 +53,7 @@
                     android:id="@+id/tvPositif"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="@string/dummyValue"
                     android:textColor="#fff"
                     android:layout_marginTop="4dp"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
@@ -70,7 +71,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sembuh"
+                    android:text="@string/sembuh"
                     android:textAlignment="center"
                     android:textColor="#fff"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
@@ -79,7 +80,7 @@
                     android:id="@+id/tvSembuh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="@string/dummyValue"
                     android:textColor="#fff"
                     android:layout_marginTop="4dp"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
@@ -97,7 +98,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Meninggal"
+                    android:text="@string/meninggal"
                     android:textColor="#fff"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
@@ -106,7 +107,7 @@
                     android:id="@+id/tvMeninggal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="@string/dummyValue"
                     android:layout_marginTop="4dp"
                     android:textColor="#fff"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
