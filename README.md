@@ -1,9 +1,9 @@
 # smkcoding_online_project_2
-Tugas ke-2 dari SMK Coding
-Tema : Info Tentang Covid-19 di Dunia, Indonesia, Dan Tips
+Tugas ke-2 dari SMK Coding \n
+Tema : Info Tentang Covid-19 di Dunia, Indonesia, Dan Tips \n
 Terdapat : ViewPager, Fragment, List View, REST Api
 
-# PREVIEW
+# Preview
 
 
 
