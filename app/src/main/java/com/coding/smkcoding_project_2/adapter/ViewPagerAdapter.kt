@@ -17,7 +17,7 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapte
                 ProvinceFragment()
             }
             2 -> {
-                RegionFragment()
+                ChartFragment()
             }
             3 -> {
                 WebFragment()

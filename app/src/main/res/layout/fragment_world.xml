@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".WorldFragment"
-    android:orientation="vertical">
+    android:id="@+id/swipeRefreshLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -59,6 +64,7 @@
                     app:cardCornerRadius="6dp">
 
                     <TextView
+                        android:id="@+id/tvPositiveGlobal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/dummyValue"
@@ -96,6 +102,7 @@
                     app:cardCornerRadius="6dp">
 
                     <TextView
+                        android:id="@+id/tvRecoveredGlobal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/dummyValue"
@@ -133,6 +140,7 @@
                     app:cardCornerRadius="6dp">
 
                     <TextView
+                        android:id="@+id/tvDeathGlobal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/dummyValue"
@@ -163,4 +171,6 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+    </LinearLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

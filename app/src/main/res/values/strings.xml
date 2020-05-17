@@ -18,11 +18,12 @@
     <string name="rumah">RUMAH Usahakan di rumah aja</string>
     <string name="covid19_world">Covid-19 In World</string>
     <string name="positif">Positif</string>
-    <string name="dummyValue">10</string>
+    <string name="dummyValue">18.787</string>
     <string name="sembuh">Sembuh</string>
     <string name="meninggal">Meninggal</string>
     <string name="name">Nama</string>
     <string name="email">Email</string>
     <string name="nama_provinsi">Nama Provinsi</string>
     <string name="nama_negara">Nama Negara</string>
+    <string name="refresh">refresh</string>
 </resources>
