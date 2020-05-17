@@ -1,5 +1,6 @@
 package com.coding.smkcoding_project_2.data
 
+import com.coding.smkcoding_project_2.serialized.IndonesiaDataItem
 import com.coding.smkcoding_project_2.serialized.global.GlobalDataItem
 import com.coding.smkcoding_project_2.serialized.global.GlobalDataMeninggal
 import com.coding.smkcoding_project_2.serialized.global.GlobalDataPositif
@@ -25,5 +26,6 @@ interface ApiService {
     @GET("meninggal")
     fun getDataMeninggoy(): Call<GlobalDataMeninggal>
 
-
+    @GET("indonesia")
+    fun getDataIndonesia(): Call<IndonesiaDataItem>
 }

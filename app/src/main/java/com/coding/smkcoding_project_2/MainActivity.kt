@@ -1,7 +1,10 @@
 package com.coding.smkcoding_project_2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.core.content.res.ResourcesCompat
 import com.coding.smkcoding_project_2.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -23,5 +26,22 @@ class MainActivity : AppCompatActivity() {
 //            tab.text = menuTeks[position]
             tab.icon = ResourcesCompat.getDrawable(resources, menuIcon[position], null)
         }).attach()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item!!.itemId) {
+            R.id.help -> moveToReadMe()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun moveToReadMe(){
+        val intent = Intent(this, ReadMeActivity::class.java)
+        startActivity(intent)
     }
 }

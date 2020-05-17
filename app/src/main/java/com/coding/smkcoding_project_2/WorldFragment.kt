@@ -16,15 +16,11 @@ import com.coding.smkcoding_project_2.util.dismissLoading
 import com.coding.smkcoding_project_2.util.showLoading
 import com.coding.smkcoding_project_2.util.tampilToast
 import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_province.*
 import kotlinx.android.synthetic.main.fragment_world.*
 import kotlinx.android.synthetic.main.fragment_world.swipeRefreshLayout
-import kotlinx.android.synthetic.main.item_world_data.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.NumberFormat
-import java.util.*
 
 class WorldFragment : Fragment() {
 
