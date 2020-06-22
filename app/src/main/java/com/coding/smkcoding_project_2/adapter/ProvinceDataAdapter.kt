@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.coding.smkcoding_project_2.R
+import com.coding.smkcoding_project_2.serialized.province.Data
 import com.coding.smkcoding_project_2.serialized.province.ProvinceDataItem
+import com.coding.smkcoding_project_2.serialized.province.ProvinceDataNew
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_province_data.*
 import java.text.NumberFormat
 import java.util.*
 
 class ProvinceDataAdapter (private val context: Context,
-                           private val provinceData: List<ProvinceDataItem>) :
+                           private val provinceData: ProvinceDataNew) :
     RecyclerView.Adapter<ProvinceDataAdapter.ViewHolder> (){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
@@ -21,24 +23,24 @@ class ProvinceDataAdapter (private val context: Context,
     )
 
     override fun getItemCount(): Int {
-        return provinceData.size
+        return provinceData.data.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(provinceData[position])
+        holder.bindItem(provinceData)
     }
 
     class ViewHolder (override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
-        fun bindItem(item: ProvinceDataItem){
+        fun bindItem(item: ProvinceDataNew){
 
-            tvNameProv.text = item.attributes.provinsi
+            tvNameProv.text = item.data[position].provinsi
             tvPositif.text = NumberFormat.getInstance(Locale.getDefault()).
-            format(item.attributes.kasusPosi)
+            format(item.data[position].kasusPosi)
             tvSembuh.text = NumberFormat.getInstance(Locale.getDefault()).
-            format(item.attributes.kasusSemb)
+            format(item.data[position].kasusSemb)
             tvMeninggal.text = NumberFormat.getInstance(Locale.getDefault()).
-            format(item.attributes.kasusMeni)
+            format(item.data[position].kasusMeni)
         }
     }
 }

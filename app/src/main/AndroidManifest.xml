@@ -11,8 +11,10 @@
         android:roundIcon="@drawable/ic_icon"
         android:supportsRtl="true"
         android:theme="@style/AppThemeCustom2">
-        <activity android:name=".ReadMeActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".AddTutorialActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ReadMeActivity" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -25,3 +25,33 @@ inline fun <reified T> apiRequest(okHttpClient: OkHttpClient): T {
         .build()
     return retrofit.create(T::class.java)
 }
+
+inline fun <reified T> requestApi(okHttpClient: OkHttpClient): T {
+    val gson = GsonBuilder().create()
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://covid19.mathdro.id/")
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .build()
+    return retrofit.create(T::class.java)
+}
+
+inline fun <reified T> requestCovidIndo(okHttpClient: OkHttpClient): T {
+    val gson = GsonBuilder().create()
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://indonesia-covid-19-api.now.sh/")
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .build()
+    return retrofit.create(T::class.java)
+}
+
+inline fun <reified T> requestProvIndo(okHttpClient: OkHttpClient): T {
+    val gson = GsonBuilder().create()
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://indonesia-covid-19.mathdro.id/")
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .build()
+    return retrofit.create(T::class.java)
+}

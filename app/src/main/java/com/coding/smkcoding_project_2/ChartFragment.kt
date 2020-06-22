@@ -12,7 +12,9 @@ import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.coding.smkcoding_project_2.data.ApiService
 import com.coding.smkcoding_project_2.data.apiRequest
 import com.coding.smkcoding_project_2.data.httpClient
+import com.coding.smkcoding_project_2.data.requestCovidIndo
 import com.coding.smkcoding_project_2.serialized.IndonesiaDataItem
+import com.coding.smkcoding_project_2.serialized.IndonesiaDataNew
 import com.coding.smkcoding_project_2.util.dismissLoading
 import com.coding.smkcoding_project_2.util.showLoading
 import kotlinx.android.synthetic.main.fragment_chart.*
@@ -25,9 +27,9 @@ import retrofit2.Response
  */
 class ChartFragment : Fragment() {
 
-    private var indPos : String = "6"
-    private var indSem : String = "3"
-    private var indMen : String = "1"
+    private var indPos : String = "1"
+    private var indSem : String = "2"
+    private var indMen : String = "3"
     private var indRaw : String = "4"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,35 +45,35 @@ class ChartFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        chart()
         callDataIndonesia()
         super.onViewCreated(view, savedInstanceState)
-        chart()
     }
 
     private fun callDataIndonesia(){
         showLoading(context!!, refreshData)
 
         val httpClient = httpClient()
-        val apiReq = apiRequest<ApiService>(httpClient)
+        val apiReq = requestCovidIndo<ApiService>(httpClient)
 
         val call = apiReq.getDataIndonesia()
 
-        call.enqueue(object: Callback<IndonesiaDataItem> {
-            override fun onFailure(call: Call<IndonesiaDataItem>, t: Throwable) {
+        call.enqueue(object: Callback<IndonesiaDataNew> {
+            override fun onFailure(call: Call<IndonesiaDataNew>, t: Throwable) {
                 dismissLoading(refreshData)
             }
 
             override fun onResponse(
-                call: Call<IndonesiaDataItem>,
-                response: Response<IndonesiaDataItem>
+                call: Call<IndonesiaDataNew>,
+                response: Response<IndonesiaDataNew>
             ) {
                 dismissLoading(refreshData)
                 if (response.isSuccessful)
                     if (response.body() != null)
-                        indPos = response.body()!!.positif
-                        indSem = response.body()!!.sembuh
-                        indMen = response.body()!!.meninggal
-                        indRaw = response.body()!!.dirawat
+                        indPos = response.body()!!.jumlahKasus.toString()
+                        indSem = response.body()!!.sembuh.toString()
+                        indMen = response.body()!!.meninggal.toString()
+                        indRaw = response.body()!!.perawatan.toString()
                         chart()
                 chart()
             }
@@ -95,7 +97,7 @@ class ChartFragment : Fragment() {
         data.add(ValueDataEntry("Positif", posit))
         data.add(ValueDataEntry("Sembuh",sembu))
         data.add(ValueDataEntry("Meninggal", menin))
-        data.add(ValueDataEntry("Dirawat", rawat))
+        data.add(ValueDataEntry("Rawat", rawat))
 
         pie.data(data)
 

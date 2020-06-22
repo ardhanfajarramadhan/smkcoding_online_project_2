@@ -8,10 +8,8 @@ import com.coding.smkcoding_project_2.adapter.WorldDataAdapter
 import com.coding.smkcoding_project_2.data.ApiService
 import com.coding.smkcoding_project_2.data.apiRequest
 import com.coding.smkcoding_project_2.data.httpClient
-import com.coding.smkcoding_project_2.serialized.global.GlobalDataItem
-import com.coding.smkcoding_project_2.serialized.global.GlobalDataMeninggal
-import com.coding.smkcoding_project_2.serialized.global.GlobalDataPositif
-import com.coding.smkcoding_project_2.serialized.global.GlobalDataSembuh
+import com.coding.smkcoding_project_2.data.requestApi
+import com.coding.smkcoding_project_2.serialized.global.*
 import com.coding.smkcoding_project_2.util.dismissLoading
 import com.coding.smkcoding_project_2.util.showLoading
 import com.coding.smkcoding_project_2.util.tampilToast
@@ -21,12 +19,14 @@ import kotlinx.android.synthetic.main.fragment_world.swipeRefreshLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.NumberFormat
+import java.util.*
 
 class WorldFragment : Fragment() {
 
-    private var globalPositif : String = ""
-    private var globalSembuh : String = ""
-    private var globalMeninggal : String = ""
+    private var globalPositif : Int = 0
+    private var globalSembuh : Int = 0
+    private var globalMeninggal : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,13 +48,13 @@ class WorldFragment : Fragment() {
         showLoading(context!!, swipeRefreshLayout)
 
         val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiService>(httpClient)
+        val apiRequest = requestApi<ApiService>(httpClient)
 
         val call = apiRequest.getDataGlobal()
 
-        val call2 = apiRequest.getDataPositif()
-        val call3 = apiRequest.getDataSembuh()
-        val call4 = apiRequest.getDataMeninggoy()
+        val confirm = apiRequest.getDataPositifNew()
+        val recover = apiRequest.getDataSembuhNew()
+        val death = apiRequest.getDataMeninggoyNew()
 
         call.enqueue(object : Callback<List<GlobalDataItem>> {
 
@@ -83,63 +83,63 @@ class WorldFragment : Fragment() {
             }
         })
 
-        call2.enqueue(object: Callback<GlobalDataPositif> {
-            override fun onFailure(call: Call<GlobalDataPositif>, t: Throwable) {
+        confirm.enqueue(object: Callback<getGlobalDataNew> {
+            override fun onFailure(call: Call<getGlobalDataNew>, t: Throwable) {
                 dismissLoading(swipeRefreshLayout)
             }
 
             override fun onResponse(
-                call: Call<GlobalDataPositif>,
-                response: Response<GlobalDataPositif>
+                call: Call<getGlobalDataNew>,
+                response: Response<getGlobalDataNew>
             ) {
                 dismissLoading(swipeRefreshLayout)
                 when {
                     response.isSuccessful ->
                         when {
                             response.body() != null ->
-                                globalPositif = response.body()!!.value
+                                globalPositif = response.body()!!.confirmed.value
                         }
                 }
                 setDataGlobal()
             }
         })
 
-        call3.enqueue(object: Callback<GlobalDataSembuh> {
-            override fun onFailure(call: Call<GlobalDataSembuh>, t: Throwable) {
+        recover.enqueue(object: Callback<getGlobalDataNew> {
+            override fun onFailure(call: Call<getGlobalDataNew>, t: Throwable) {
                 dismissLoading(swipeRefreshLayout)
             }
 
             override fun onResponse(
-                call: Call<GlobalDataSembuh>,
-                response: Response<GlobalDataSembuh>
+                call: Call<getGlobalDataNew>,
+                response: Response<getGlobalDataNew>
             ) {
                 dismissLoading(swipeRefreshLayout)
                 when {
                     response.isSuccessful ->
                         when{
                             response.body() != null ->
-                                globalSembuh = response.body()!!.value
+                                globalSembuh = response.body()!!.recovered.value
                         }
                 }
                 setDataGlobal()
             }
         })
 
-        call4.enqueue(object: Callback<GlobalDataMeninggal>{
-            override fun onFailure(call: Call<GlobalDataMeninggal>, t: Throwable) {
+        death.enqueue(object: Callback<getGlobalDataNew>{
+            override fun onFailure(call: Call<getGlobalDataNew>, t: Throwable) {
                 dismissLoading(swipeRefreshLayout)
             }
 
             override fun onResponse(
-                call: Call<GlobalDataMeninggal>,
-                response: Response<GlobalDataMeninggal>
+                call: Call<getGlobalDataNew>,
+                response: Response<getGlobalDataNew>
             ) {
                 dismissLoading(swipeRefreshLayout)
                 when {
                     response.isSuccessful ->
                         when {
                             response.body() != null ->
-                                globalMeninggal = response.body()!!.value
+                                globalMeninggal = response.body()!!.deaths.value
                         }
                 }
                 setDataGlobal()
@@ -157,9 +157,12 @@ class WorldFragment : Fragment() {
     }
 
     private fun setDataGlobal(){
-        tvPositiveGlobal.text = globalPositif
-        tvRecoveredGlobal.text = globalSembuh
-        tvDeathGlobal.text = globalMeninggal
+        tvPositiveGlobal.text = NumberFormat.getInstance(Locale.getDefault()).
+        format(globalPositif)
+        tvRecoveredGlobal.text = NumberFormat.getInstance(Locale.getDefault()).
+        format(globalSembuh)
+        tvDeathGlobal.text = NumberFormat.getInstance(Locale.getDefault()).
+        format(globalMeninggal)
     }
 
     override fun onDestroy() {
