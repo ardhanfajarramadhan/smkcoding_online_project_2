@@ -26,4 +26,5 @@
     <string name="nama_provinsi">Nama Provinsi</string>
     <string name="nama_negara">Nama Negara</string>
     <string name="refresh">refresh</string>
+    <string name="infoApp">Terdapat informasi tentang Covid-19 dan terdapat perbadingan grafik dan buat tutorialmu!</string>
 </resources>

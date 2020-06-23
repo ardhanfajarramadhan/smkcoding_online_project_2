@@ -45,7 +45,7 @@ class ChartFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        chart()
+//        chart()
         callDataIndonesia()
         super.onViewCreated(view, savedInstanceState)
     }
@@ -67,41 +67,41 @@ class ChartFragment : Fragment() {
                 call: Call<IndonesiaDataNew>,
                 response: Response<IndonesiaDataNew>
             ) {
-                dismissLoading(refreshData)
+//                dismissLoading(refreshData)
                 if (response.isSuccessful)
                     if (response.body() != null)
                         indPos = response.body()!!.jumlahKasus.toString()
                         indSem = response.body()!!.sembuh.toString()
                         indMen = response.body()!!.meninggal.toString()
                         indRaw = response.body()!!.perawatan.toString()
-                        chart()
-                chart()
+//                        chart()
+//                chart()
             }
         })
     }
 
-    private fun chart(){
-        val positif = indPos.replace("\\s".toRegex(), ",")
-        val sembuh = indSem.replace("\\s".toRegex(), ",")
-        val meninggal = indMen.replace("\\s".toRegex(), ",")
-        val dirawat = indRaw.replace("\\s".toRegex(), ",")
-
-        val posit: Int? = positif.toInt()
-        val sembu: Int? = sembuh.toInt()
-        val menin: Int? = meninggal.toInt()
-        val rawat: Int? = dirawat.toInt()
-
-        val pie = AnyChart.pie()
-
-        val data: MutableList<DataEntry> = ArrayList()
-        data.add(ValueDataEntry("Positif", posit))
-        data.add(ValueDataEntry("Sembuh",sembu))
-        data.add(ValueDataEntry("Meninggal", menin))
-        data.add(ValueDataEntry("Rawat", rawat))
-
-        pie.data(data)
-
-        val anyChartView = any_chart_view as AnyChartView
-        anyChartView.setChart(pie)
-    }
+//    private fun chart(){
+//        val positif = indPos.replace("\\s".toRegex(), ",")
+//        val sembuh = indSem.replace("\\s".toRegex(), ",")
+//        val meninggal = indMen.replace("\\s".toRegex(), ",")
+//        val dirawat = indRaw.replace("\\s".toRegex(), ",")
+//
+//        val posit: Int? = positif.toInt()
+//        val sembu: Int? = sembuh.toInt()
+//        val menin: Int? = meninggal.toInt()
+//        val rawat: Int? = dirawat.toInt()
+//
+//        val pie = AnyChart.pie()
+//
+//        val data: MutableList<DataEntry> = ArrayList()
+//        data.add(ValueDataEntry("Positif", posit))
+//        data.add(ValueDataEntry("Sembuh",sembu))
+//        data.add(ValueDataEntry("Meninggal", menin))
+//        data.add(ValueDataEntry("Rawat", rawat))
+//
+//        pie.data(data)
+//
+//        val anyChartView = any_chart_view as AnyChartView
+//        anyChartView.setChart(pie)
+//    }
 }

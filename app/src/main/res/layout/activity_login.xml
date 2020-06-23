@@ -53,8 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="normal"
-                android:text="Terdapat informasi tentang Covid-19 dan
-                terdapat perbadingan grafik dan buat tutorialmu!"
+                android:text="@string/infoApp"
                 android:textAlignment="center"/>
         </LinearLayout>
 
