@@ -23,9 +23,9 @@ class AddTutorialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_tutorial)
 
-        Judul = findViewById<EditText>(R.id.judul)
-        Deskripsi = findViewById<EditText>(R.id.deskripsi)
-        NamaUpload = findViewById<EditText>(R.id.namaUpload)
+        Judul = etJudulAdd
+        Deskripsi = etDeskripsiAdd
+        NamaUpload = etnamaUploadAdd
         ref = FirebaseDatabase.getInstance().getReference()
         auth = FirebaseAuth.getInstance()
 

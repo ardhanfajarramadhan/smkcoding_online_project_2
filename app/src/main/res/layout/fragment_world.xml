@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".WorldFragment"
     android:id="@+id/swipeRefreshLayout">
 
     <LinearLayout
@@ -12,18 +11,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:layout_margin="6dp"
-        app:cardCornerRadius="5dp">
-
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="6dp">
+            android:padding="6dp"
+            android:layout_margin="6dp"
+            app:cardCornerRadius="5dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -32,19 +25,35 @@
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:layout_marginBottom="7dp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:fontFamily="@font/roboto_bold"/>
+        </androidx.cardview.widget.CardView>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000"
-                android:layout_marginBottom="6dp"/>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginBottom="6dp"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="6dp">
+
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:background="#000000"-->
+<!--                android:layout_marginBottom="6dp"/>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="3dp"
                 android:layout_marginBottom="3dp">
 
                 <TextView
@@ -53,7 +62,7 @@
                     android:layout_weight="1"
                     android:text="@string/positif"
                     android:textSize="18sp"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="@font/roboto_medium"
                     android:layout_gravity="center"/>
 
                 <androidx.cardview.widget.CardView
@@ -91,7 +100,7 @@
                     android:layout_weight="1"
                     android:text="@string/sembuh"
                     android:textSize="18sp"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="@font/roboto_medium"
                     android:layout_gravity="center"/>
 
                 <androidx.cardview.widget.CardView
@@ -129,7 +138,7 @@
                     android:layout_weight="1"
                     android:text="@string/meninggal"
                     android:textSize="18sp"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="@font/roboto_medium"
                     android:layout_gravity="center"/>
 
                 <androidx.cardview.widget.CardView

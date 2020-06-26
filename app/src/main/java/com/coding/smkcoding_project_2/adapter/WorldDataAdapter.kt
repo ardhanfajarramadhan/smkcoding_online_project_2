@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.coding.smkcoding_project_2.R
-import com.coding.smkcoding_project_2.serialized.global.GlobalDataItem
+import com.coding.smkcoding_project_2.serialized.global.GlobalDataNew
+import com.coding.smkcoding_project_2.serialized.global.GlobalDataNewItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_world_data.*
 import java.text.NumberFormat
 import java.util.*
 
 class WorldDataAdapter (private val context: Context,
-                        private val globalData: List<GlobalDataItem>) :
+                        private val globalData: GlobalDataNew
+) :
     RecyclerView.Adapter<WorldDataAdapter.ViewHolder> (){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
@@ -25,20 +27,20 @@ class WorldDataAdapter (private val context: Context,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(globalData[position])
+        holder.bindItem(globalData.get(position))
     }
 
     class ViewHolder (override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
-        fun bindItem(item: GlobalDataItem){
+        fun bindItem(item: GlobalDataNewItem){
 
-            tvNameCountry.text = item.attributes.countryRegion
+            tvNameCountry.text = item.countryRegion
             tvJmlPositif.text = NumberFormat.getInstance(Locale.getDefault()).
-            format(item.attributes.confirmed)
+            format(item.confirmed)
             tvJmlSembuh.text = NumberFormat.getInstance(Locale.getDefault()).
-            format(item.attributes.recovered)
+            format(item.recovered)
             tvJmlDead.text = NumberFormat.getInstance(Locale.getDefault()).
-            format(item.attributes.deaths)
+            format(item.deaths)
         }
     }
 }

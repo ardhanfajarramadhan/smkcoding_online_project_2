@@ -10,5 +10,9 @@ data class TutorialModel(
     var namaUpload : String,
     @PrimaryKey var key: String
 ) {
+    fun getKey() {
+        TODO("Not yet implemented")
+    }
+
     constructor() : this("","","","")
 }

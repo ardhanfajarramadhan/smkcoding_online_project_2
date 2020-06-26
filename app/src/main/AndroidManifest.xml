@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/ic_icon"
         android:supportsRtl="true"
         android:theme="@style/AppThemeCustom2">
-        <activity android:name=".AddTutorialActivity"></activity>
+        <activity android:name=".UpdateTutorialActivity"></activity>
+        <activity android:name=".AddTutorialActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ReadMeActivity" />
         <activity android:name=".LoginActivity">

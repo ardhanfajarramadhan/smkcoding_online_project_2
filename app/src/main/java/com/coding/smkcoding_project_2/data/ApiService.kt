@@ -11,8 +11,8 @@ import retrofit2.http.GET
 
 interface ApiService {
 
-    @GET(".")
-    fun getDataGlobal(): Call<List<GlobalDataItem>>
+    @GET("api/confirmed")
+    fun getDataGlobal(): Call<GlobalDataNew>
 
     @GET("api/provinsi")
     fun getDataProvince(): Call<ProvinceDataNew>

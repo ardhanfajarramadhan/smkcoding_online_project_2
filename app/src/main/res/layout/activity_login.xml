@@ -28,18 +28,18 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Welcome to"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="40dp"
-                android:gravity="center"/>
+                android:fontFamily="@font/dsbold"
+                android:gravity="center"
+                android:text="@string/welcome_to"
+                android:textSize="50sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Info Covid-19 App"
-                style="@style/TextAppearance.MaterialComponents.Body2"
-                android:textSize="20dp"
-                android:gravity="center"/>
+                android:text="@string/info_app"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:fontFamily="@font/dsbold"/>
 
         </LinearLayout>
 
@@ -54,7 +54,8 @@
                 android:layout_height="wrap_content"
                 android:textStyle="normal"
                 android:text="@string/infoApp"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:fontFamily="@font/mlight"/>
         </LinearLayout>
 
             <Button
@@ -63,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Log in with Google"
-                android:layout_marginTop="50dp"/>
+                android:layout_marginTop="40dp"/>
 
     </LinearLayout>
 

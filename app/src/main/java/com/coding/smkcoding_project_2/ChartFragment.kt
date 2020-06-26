@@ -7,30 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import com.anychart.AnyChart
 import com.anychart.AnyChartView
+import com.anychart.charts.Pie
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.coding.smkcoding_project_2.data.ApiService
-import com.coding.smkcoding_project_2.data.apiRequest
 import com.coding.smkcoding_project_2.data.httpClient
 import com.coding.smkcoding_project_2.data.requestCovidIndo
-import com.coding.smkcoding_project_2.serialized.IndonesiaDataItem
 import com.coding.smkcoding_project_2.serialized.IndonesiaDataNew
-import com.coding.smkcoding_project_2.util.dismissLoading
 import com.coding.smkcoding_project_2.util.showLoading
+import com.coding.smkcoding_project_2.util.tampilToast
 import kotlinx.android.synthetic.main.fragment_chart.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class ChartFragment : Fragment() {
-
-    private var indPos : String = "1"
-    private var indSem : String = "2"
-    private var indMen : String = "3"
-    private var indRaw : String = "4"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,63 +40,51 @@ class ChartFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        chart()
-        callDataIndonesia()
         super.onViewCreated(view, savedInstanceState)
-    }
-
-    private fun callDataIndonesia(){
-        showLoading(context!!, refreshData)
 
         val httpClient = httpClient()
-        val apiReq = requestCovidIndo<ApiService>(httpClient)
+        val apiIndo = requestCovidIndo<ApiService>(httpClient)
+        val indoDataTotal = apiIndo.getDataIndonesia()
 
-        val call = apiReq.getDataIndonesia()
+        indoDataTotal.enqueue(object : Callback<IndonesiaDataNew> {
 
-        call.enqueue(object: Callback<IndonesiaDataNew> {
             override fun onFailure(call: Call<IndonesiaDataNew>, t: Throwable) {
-                dismissLoading(refreshData)
             }
 
             override fun onResponse(
-                call: Call<IndonesiaDataNew>,
-                response: Response<IndonesiaDataNew>
+                call: Call<IndonesiaDataNew>, response:
+                Response<IndonesiaDataNew>
             ) {
-//                dismissLoading(refreshData)
-                if (response.isSuccessful)
-                    if (response.body() != null)
-                        indPos = response.body()!!.jumlahKasus.toString()
-                        indSem = response.body()!!.sembuh.toString()
-                        indMen = response.body()!!.meninggal.toString()
-                        indRaw = response.body()!!.perawatan.toString()
-//                        chart()
-//                chart()
+                when {
+                    response.isSuccessful ->
+                        when {
+                            response.body() != null ->
+                                setAnyChart(response.body()!!)
+                            else -> {
+                                tampilToast(context!!, "Berhasil")
+                            }
+                        }
+                    else -> {
+                        tampilToast(context!!, "Gagal")
+                    }
+                }
             }
         })
     }
 
-//    private fun chart(){
-//        val positif = indPos.replace("\\s".toRegex(), ",")
-//        val sembuh = indSem.replace("\\s".toRegex(), ",")
-//        val meninggal = indMen.replace("\\s".toRegex(), ",")
-//        val dirawat = indRaw.replace("\\s".toRegex(), ",")
-//
-//        val posit: Int? = positif.toInt()
-//        val sembu: Int? = sembuh.toInt()
-//        val menin: Int? = meninggal.toInt()
-//        val rawat: Int? = dirawat.toInt()
-//
-//        val pie = AnyChart.pie()
-//
-//        val data: MutableList<DataEntry> = ArrayList()
-//        data.add(ValueDataEntry("Positif", posit))
-//        data.add(ValueDataEntry("Sembuh",sembu))
-//        data.add(ValueDataEntry("Meninggal", menin))
-//        data.add(ValueDataEntry("Rawat", rawat))
-//
-//        pie.data(data)
-//
-//        val anyChartView = any_chart_view as AnyChartView
-//        anyChartView.setChart(pie)
-//    }
+    private fun setAnyChart(item: IndonesiaDataNew){
+        val pie = AnyChart.pie()
+        val data: MutableList<DataEntry> = ArrayList()
+        data.add(ValueDataEntry("Positif", item.jumlahKasus))
+        data.add(ValueDataEntry("Sembuh", item.sembuh))
+        data.add(ValueDataEntry("Meninggal", item.meninggal))
+        data.add(ValueDataEntry("Rawat", item.perawatan))
+
+        pie.data(data)
+
+        val anyChartView = any_chart_view as AnyChartView
+        anyChartView.setChart(pie)
+
+
+    }
 }

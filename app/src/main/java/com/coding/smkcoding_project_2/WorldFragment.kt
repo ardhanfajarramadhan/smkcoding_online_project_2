@@ -56,15 +56,15 @@ class WorldFragment : Fragment() {
         val recover = apiRequest.getDataSembuhNew()
         val death = apiRequest.getDataMeninggoyNew()
 
-        call.enqueue(object : Callback<List<GlobalDataItem>> {
+        call.enqueue(object : Callback<GlobalDataNew> {
 
-            override fun onFailure(call: Call<List<GlobalDataItem>>, t: Throwable) {
+            override fun onFailure(call: Call<GlobalDataNew>, t: Throwable) {
                 dismissLoading(swipeRefreshLayout)
             }
 
             override fun onResponse(
-                call: Call<List<GlobalDataItem>>, response:
-                Response<List<GlobalDataItem>>
+                call: Call<GlobalDataNew>, response:
+                Response<GlobalDataNew>
             ) {
                 dismissLoading(swipeRefreshLayout)
                 when {
@@ -92,7 +92,7 @@ class WorldFragment : Fragment() {
                 call: Call<getGlobalDataNew>,
                 response: Response<getGlobalDataNew>
             ) {
-                dismissLoading(swipeRefreshLayout)
+//                dismissLoading(swipeRefreshLayout)
                 when {
                     response.isSuccessful ->
                         when {
@@ -147,7 +147,7 @@ class WorldFragment : Fragment() {
         })
     }
 
-    private fun tampilDataGlobal(dataGlobals: List<GlobalDataItem>) {
+    private fun tampilDataGlobal(dataGlobals: GlobalDataNew) {
         rvGlobalData.layoutManager = LinearLayoutManager(context!!)
         rvGlobalData.adapter =
             WorldDataAdapter(

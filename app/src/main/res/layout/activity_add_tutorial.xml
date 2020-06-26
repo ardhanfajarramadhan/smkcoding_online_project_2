@@ -9,7 +9,7 @@
     tools:context=".AddTutorialActivity">
 
     <EditText
-        android:id="@+id/judul"
+        android:id="@+id/etJudulAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -17,7 +17,7 @@
         android:inputType="textPersonName"/>
 
     <EditText
-        android:id="@+id/deskripsi"
+        android:id="@+id/etDeskripsiAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -25,7 +25,7 @@
         android:inputType="textMultiLine"/>
 
     <EditText
-        android:id="@+id/namaUpload"
+        android:id="@+id/etnamaUploadAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
