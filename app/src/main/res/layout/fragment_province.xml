@@ -30,6 +30,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/dataTotalProv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="6dp"
@@ -175,5 +176,6 @@
         </RelativeLayout>
 
     </LinearLayout>
+
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

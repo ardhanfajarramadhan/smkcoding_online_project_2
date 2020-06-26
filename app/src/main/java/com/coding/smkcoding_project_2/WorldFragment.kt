@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.coding.smkcoding_project_2.adapter.WorldDataAdapter
 import com.coding.smkcoding_project_2.data.ApiService
-import com.coding.smkcoding_project_2.data.apiRequest
 import com.coding.smkcoding_project_2.data.httpClient
 import com.coding.smkcoding_project_2.data.requestApi
 import com.coding.smkcoding_project_2.serialized.global.*
@@ -23,10 +22,6 @@ import java.text.NumberFormat
 import java.util.*
 
 class WorldFragment : Fragment() {
-
-    private var globalPositif : Int = 0
-    private var globalSembuh : Int = 0
-    private var globalMeninggal : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,9 +47,7 @@ class WorldFragment : Fragment() {
 
         val call = apiRequest.getDataGlobal()
 
-        val confirm = apiRequest.getDataPositifNew()
-        val recover = apiRequest.getDataSembuhNew()
-        val death = apiRequest.getDataMeninggoyNew()
+        val totalWorld = apiRequest.getDataTotalWorld()
 
         call.enqueue(object : Callback<GlobalDataNew> {
 
@@ -83,7 +76,7 @@ class WorldFragment : Fragment() {
             }
         })
 
-        confirm.enqueue(object: Callback<getGlobalDataNew> {
+        totalWorld.enqueue(object: Callback<getGlobalDataNew> {
             override fun onFailure(call: Call<getGlobalDataNew>, t: Throwable) {
                 dismissLoading(swipeRefreshLayout)
             }
@@ -97,52 +90,9 @@ class WorldFragment : Fragment() {
                     response.isSuccessful ->
                         when {
                             response.body() != null ->
-                                globalPositif = response.body()!!.confirmed.value
+                                setDataGlobal(response.body()!!)
                         }
                 }
-                setDataGlobal()
-            }
-        })
-
-        recover.enqueue(object: Callback<getGlobalDataNew> {
-            override fun onFailure(call: Call<getGlobalDataNew>, t: Throwable) {
-                dismissLoading(swipeRefreshLayout)
-            }
-
-            override fun onResponse(
-                call: Call<getGlobalDataNew>,
-                response: Response<getGlobalDataNew>
-            ) {
-                dismissLoading(swipeRefreshLayout)
-                when {
-                    response.isSuccessful ->
-                        when{
-                            response.body() != null ->
-                                globalSembuh = response.body()!!.recovered.value
-                        }
-                }
-                setDataGlobal()
-            }
-        })
-
-        death.enqueue(object: Callback<getGlobalDataNew>{
-            override fun onFailure(call: Call<getGlobalDataNew>, t: Throwable) {
-                dismissLoading(swipeRefreshLayout)
-            }
-
-            override fun onResponse(
-                call: Call<getGlobalDataNew>,
-                response: Response<getGlobalDataNew>
-            ) {
-                dismissLoading(swipeRefreshLayout)
-                when {
-                    response.isSuccessful ->
-                        when {
-                            response.body() != null ->
-                                globalMeninggal = response.body()!!.deaths.value
-                        }
-                }
-                setDataGlobal()
             }
         })
     }
@@ -156,13 +106,13 @@ class WorldFragment : Fragment() {
             )
     }
 
-    private fun setDataGlobal(){
+    private fun setDataGlobal(item: getGlobalDataNew){
         tvPositiveGlobal.text = NumberFormat.getInstance(Locale.getDefault()).
-        format(globalPositif)
+        format(item.confirmed.value)
         tvRecoveredGlobal.text = NumberFormat.getInstance(Locale.getDefault()).
-        format(globalSembuh)
+        format(item.recovered.value)
         tvDeathGlobal.text = NumberFormat.getInstance(Locale.getDefault()).
-        format(globalMeninggal)
+        format(item.deaths.value)
     }
 
     override fun onDestroy() {

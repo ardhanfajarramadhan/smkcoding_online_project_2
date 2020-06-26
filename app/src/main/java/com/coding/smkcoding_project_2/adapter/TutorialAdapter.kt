@@ -44,6 +44,9 @@ class TutorialAdapter (private val context: Context, private val list: ArrayList
         lateinit var ref : DatabaseReference
         lateinit var auth: FirebaseAuth
 
+//        holder.cv_item_tutorial.setOnLongClickListener(View.OnLongClickListener { view -> true })
+
+//
 //        holder.cv_item_tutorial.setOnLongClickListener(View.OnLongClickListener { view ->
 //            val action = arrayOf("Update", "Delete")
 //            val alert = AlertDialog.Builder(context)
@@ -80,7 +83,6 @@ class TutorialAdapter (private val context: Context, private val list: ArrayList
 //                            alert.show()
 //                        true
 //                })
-
         }
 
     class ViewHolder (override val containerView: View) : RecyclerView.ViewHolder(containerView),

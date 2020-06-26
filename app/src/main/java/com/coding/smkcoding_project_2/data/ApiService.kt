@@ -21,13 +21,13 @@ interface ApiService {
     fun getDataIndonesia(): Call<IndonesiaDataNew>
 
     @GET("api")
-    fun getDataPositifNew(): Call<getGlobalDataNew>
+    fun getDataTotalWorld(): Call<getGlobalDataNew>
 
-    @GET("api")
-    fun getDataSembuhNew(): Call<getGlobalDataNew>
-
-    @GET("api")
-    fun getDataMeninggoyNew(): Call<getGlobalDataNew>
+//    @GET("api")
+//    fun getDataSembuhNew(): Call<getGlobalDataNew>
+//
+//    @GET("api")
+//    fun getDataMeninggoyNew(): Call<getGlobalDataNew>
 
 
 }
