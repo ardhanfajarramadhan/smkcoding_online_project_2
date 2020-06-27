@@ -13,4 +13,4 @@ Tugas ke-2 dari SMK Coding
 ![Gambar Preview 1](https://github.com/ardhanfajarramadhan/smkcoding_online_project_2/blob/master/readme/readme.jpg)
 
 ## Link Download Aplikasi
-https://drive.google.com/open?id=1LmVR8fwfCrCCWkLwCoy6Akid0vVRg-ZZ
+https://drive.google.com/file/d/1PlohZRKT7Dp6LuoTIRx-SG275REIlqce/view?usp=sharing
