@@ -7,8 +7,10 @@
     android:paddingEnd="10dp"
     android:paddingBottom="10dp"
     android:paddingTop="10dp"
-    android:textSize="26sp"
+    android:textSize="20sp"
     android:textStyle="bold"
+    android:fontFamily="@font/roboto_bold"
+    android:text="@string/imageDesc"
     android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft">
 
 </TextView>

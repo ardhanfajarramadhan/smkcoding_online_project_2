@@ -7,7 +7,9 @@
     android:paddingEnd="10dp"
     android:paddingBottom="10dp"
     android:paddingTop="10dp"
-    android:textSize="22sp"
+    android:textSize="16sp"
+    android:fontFamily="@font/roboto_light"
+    android:text="@string/imageDesc"
     android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft">
 
 </TextView>

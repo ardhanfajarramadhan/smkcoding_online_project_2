@@ -15,6 +15,7 @@ class ReadMeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_read_me)
+        supportActionBar?.title = "Bantuan"
 
         expandableListView = expandListView
         val isiDunia: MutableList<String> = ArrayList()
