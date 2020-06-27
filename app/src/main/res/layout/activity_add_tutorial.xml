@@ -8,35 +8,119 @@
     android:layout_margin="10dp"
     tools:context=".AddTutorialActivity">
 
-    <EditText
-        android:id="@+id/etJudulAdd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Judul"
-        android:inputType="textPersonName"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:layout_margin="6dp"
+            app:cardCornerRadius="5dp">
 
-    <EditText
-        android:id="@+id/etDeskripsiAdd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Deskripsi"
-        android:inputType="textMultiLine"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etnamaUploadAdd"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Judul"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="start"
+                    android:fontFamily="@font/roboto_bold"
+                    android:drawableStart="@drawable/ic_panorama"
+                    android:paddingStart="10dp"/>
+
+                <EditText
+                    android:id="@+id/etJudulAdd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:hint="Judul"
+                    android:inputType="textPersonName"
+                    android:minLines="3"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Nama"
-        android:inputType="textPersonName"/>
+        android:padding="6dp"
+        android:layout_margin="6dp"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:fontFamily="@font/roboto_bold"
+                android:drawableStart="@drawable/ic_panorama"
+                android:paddingStart="10dp"/>
+
+            <EditText
+                android:id="@+id/etDeskripsiAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Deskripsi"
+                android:minLines="10"
+                android:inputType="textMultiLine"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:layout_margin="6dp"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sumber"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:fontFamily="@font/roboto_bold"
+                android:drawableStart="@drawable/ic_panorama"
+                android:paddingStart="10dp"/>
+
+            <EditText
+                android:id="@+id/etnamaUploadAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Sumber"
+                android:inputType="textPersonName"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/simpan"
+        style="@style/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="SIMPAN"
-        android:visibility="visible"/>
+        android:layout_gravity="bottom" />
 </LinearLayout>

@@ -37,52 +37,48 @@ class TutorialAdapter (private val context: Context, private val list: ArrayList
         val Deskripsi: String? = list[position].deskripsi
         val Uploader: String? = list[position].namaUpload
 
-        holder.judul.setText("Judul: $Judul")
-        holder.deskripsi.setText("Deskripsi: $Deskripsi")
-        holder.namaUploader.setText("Uploader: $Uploader")
-
         lateinit var ref : DatabaseReference
         lateinit var auth: FirebaseAuth
 
-//        holder.cv_item_tutorial.setOnLongClickListener(View.OnLongClickListener { view -> true })
-
-//
-//        holder.cv_item_tutorial.setOnLongClickListener(View.OnLongClickListener { view ->
-//            val action = arrayOf("Update", "Delete")
-//            val alert = AlertDialog.Builder(context)
-//            alert.setItems(action) { dialog, i ->
-//                when (i) {
-//                    0 -> {
-//                        /* Berpindah Activity pada halaman layout updateData dan mengambil data pada listMahasiswa, berdasarkan posisinya untuk dikirim pada activity selanjutnya
-//                         */
-//                        val bundle = Bundle()
-//                        bundle.putString("dataJudul", list[position].judul)
-//                        bundle.putString("dataDeskripsi", list[position].deskripsi)
-//                        bundle.putString("dataUploader", list[position].namaUpload)
-//                        bundle.putString("getPrimaryKey", list[position].key)
-//                        val intent = Intent(context, UpdateTutorialActivity::class.java)
-//                        intent.putExtras(bundle)
-//                        context.startActivity(intent)
-//                    }
-//                    1 -> {
-//                        auth = FirebaseAuth.getInstance()
-//                        ref = FirebaseDatabase.getInstance().getReference()
-//                        val getUserID: String = auth?.getCurrentUser()?.getUid().toString()
-//                        if (ref != null) {
-//                            ref.child(getUserID)
-//                                .child("Teman")
-//                                .child(list.get(position)?.getKey().toString())
-//                                .removeValue()
-//                                .addOnSuccessListener {
-//                                    Toast.makeText(context, "Data Berhasil Dihapus", Toast.LENGTH_SHORT).show()
-//
-//                                }
-//                        }
-//                    }
-//                    alert.create()
-//                            alert.show()
-//                        true
-//                })
+        holder.cv_item_tutorial.setOnLongClickListener(View.OnLongClickListener { view ->
+            val action = arrayOf("Update", "Delete")
+            val alert = AlertDialog.Builder(context)
+            alert.setItems(action) { dialog, i ->
+                when (i) {
+                    0 -> {
+                        /* Berpindah Activity pada halaman layout updateData dan mengambil data pada listMahasiswa, berdasarkan posisinya untuk dikirim pada activity selanjutnya
+                         */
+                        val bundle = Bundle()
+                        bundle.putString("dataJudul", Judul)
+                        bundle.putString("dataDeskripsi", Deskripsi)
+                        bundle.putString("dataUploader", Uploader)
+                        bundle.putString("getPrimaryKey", list[position].judul)
+                        val intent = Intent(context, UpdateTutorialActivity::class.java)
+                        intent.putExtras(bundle)
+                        context.startActivity(intent)
+                    }
+                    1 -> {
+                        auth = FirebaseAuth.getInstance()
+                        ref = FirebaseDatabase.getInstance().getReference()
+                        if (ref != null) {
+                            ref.child("Tutorial")
+                                .child(list[position].judul)
+                                .removeValue()
+                                .addOnSuccessListener {
+                                    Toast.makeText(
+                                        context,
+                                        "Data Berhasil Dihapus",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                        }
+                    }
+                }
+            }
+            alert.create()
+            alert.show()
+            true
+        })
         }
 
     class ViewHolder (override val containerView: View) : RecyclerView.ViewHolder(containerView),
@@ -90,8 +86,7 @@ class TutorialAdapter (private val context: Context, private val list: ArrayList
         fun bindItem(item: ArrayList<TutorialModel>){
             judul.text = item[position].judul
             deskripsi.text = item[position].deskripsi
-            namaUploader.text = item[position].namaUpload
-
+//            namaUploader.text = item[position].namaUpload
         }
     }
 

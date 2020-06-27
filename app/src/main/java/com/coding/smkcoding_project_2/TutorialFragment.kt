@@ -55,9 +55,8 @@ class TutorialFragment : Fragment() {
         //Mendapatkan Referensi Database
         Toast.makeText(getContext(), "Mohon Tunggu Sebentar...", Toast.LENGTH_LONG).show()
         auth = FirebaseAuth.getInstance()
-        val getUserID: String = auth?.getCurrentUser()?.getUid().toString()
         ref = FirebaseDatabase.getInstance().getReference()
-        ref.child(getUserID).child("Tutorial").addValueEventListener(object : ValueEventListener {
+        ref.child("Tutorial").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(getContext(), "Database Error yaa...", Toast.LENGTH_LONG).show()
             }
@@ -82,5 +81,4 @@ class TutorialFragment : Fragment() {
     }
 }
 
-private fun TutorialModel?.setKey(key: String?) {
-}
+

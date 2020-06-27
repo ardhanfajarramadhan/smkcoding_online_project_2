@@ -8,11 +8,15 @@ data class TutorialModel(
     var judul : String,
     var deskripsi : String,
     var namaUpload : String,
-    @PrimaryKey var key: String
+    @PrimaryKey var id: String
 ) {
     fun getKey() {
-        TODO("Not yet implemented")
+    }
+
+    fun setKey(key: String?) {
+
     }
 
     constructor() : this("","","","")
 }
+

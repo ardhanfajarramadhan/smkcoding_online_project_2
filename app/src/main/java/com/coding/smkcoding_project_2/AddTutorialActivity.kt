@@ -22,6 +22,7 @@ class AddTutorialActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_tutorial)
+        getSupportActionBar()?.setTitle("Upload Tutorial")
 
         Judul = etJudulAdd
         Deskripsi = etDeskripsiAdd
@@ -46,7 +47,7 @@ class AddTutorialActivity : AppCompatActivity() {
         } else {
             val tutorial = TutorialModel(getJudul, getDeskripsi, getNamaUpload, getUserID)
             //struktur databasenya adalah: ID >> Teman >> Key >> Data
-            ref.child(getUserID).child("Tutorial").push().setValue(tutorial).addOnCompleteListener {
+            ref.child("Tutorial").push().setValue(tutorial).addOnCompleteListener {
                 Toast.makeText(this, "Data Berhasil Disimpan", Toast.LENGTH_SHORT).show()
             }
 

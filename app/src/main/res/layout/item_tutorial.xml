@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="6dp"
     android:layout_marginBottom="8dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
     android:id="@+id/cv_item_tutorial">
 
     <LinearLayout
@@ -22,9 +22,10 @@
             android:contentDescription="@string/imageDesc"
             android:src="@drawable/hand"/>
         <LinearLayout
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="13dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/judul"
@@ -36,17 +37,18 @@
                 android:id="@+id/deskripsi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/email"
+                android:text="@string/imageDesc"
                 android:textSize="16sp"
-                tools:ignore="DuplicateIds" />
+                tools:ignore="DuplicateIds"
+                android:maxLines="2"/>
 
-            <TextView
-                android:id="@+id/namaUploader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/name"
-                android:textSize="16sp"
-                tools:ignore="DuplicateIds" />
         </LinearLayout>
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/show_action"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:backgroundTint="#fff"-->
+<!--            android:src="@drawable/ic_more_vert_black"/>-->
     </LinearLayout>
 </androidx.cardview.widget.CardView>

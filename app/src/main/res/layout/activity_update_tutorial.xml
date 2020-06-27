@@ -1,35 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="10dp">
 
-    <EditText
-        android:id="@+id/new_judul"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Judul Baru"
-        android:inputType="textPersonName" />
-    <EditText
-        android:id="@+id/new_deskripsi"
+        android:padding="6dp"
+        android:layout_margin="6dp"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Judul"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:fontFamily="@font/roboto_bold"
+                android:drawableStart="@drawable/ic_panorama"
+                android:paddingStart="10dp"/>
+
+            <EditText
+                android:id="@+id/judul_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Judul"
+                android:inputType="textPersonName"
+                android:minLines="3"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Deskripsi Baru"
-        android:inputType="textPersonName" />
-    <EditText
-        android:id="@+id/new_uploader"
+        android:padding="6dp"
+        android:layout_margin="6dp"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:fontFamily="@font/roboto_bold"
+                android:drawableStart="@drawable/ic_panorama"
+                android:paddingStart="10dp"/>
+
+            <EditText
+                android:id="@+id/deskripsi_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Deskripsi"
+                android:minLines="10"
+                android:inputType="textMultiLine"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Nama Uploader"
-        android:inputType="textPersonName" />
+        android:padding="6dp"
+        android:layout_margin="6dp"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sumber"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:fontFamily="@font/roboto_bold"
+                android:drawableStart="@drawable/ic_panorama"
+                android:paddingStart="10dp"/>
+
+            <EditText
+                android:id="@+id/sumber_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Sumber"
+                android:inputType="textPersonName"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
     <Button
-        android:id="@+id/update"
+        android:id="@+id/btn_update"
+        style="@style/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update" />
+        android:layout_margin="10dp"
+        android:text="update"
+        android:layout_gravity="bottom" />
 </LinearLayout>

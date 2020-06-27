@@ -10,12 +10,13 @@ import com.coding.smkcoding_project_2.model.TutorialModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_update_tutorial.*
 
 class UpdateTutorialActivity : AppCompatActivity() {
 
     private var judulNew: EditText? = null
     private var deskripsiNew: EditText? = null
-    private var namaUploadNew: EditText? = null
+    private var sumberNew: EditText? = null
     lateinit var update: Button
     private var database: DatabaseReference? = null
     private var auth: FirebaseAuth? = null
@@ -27,10 +28,10 @@ class UpdateTutorialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_tutorial)
         getSupportActionBar()?.setTitle("Update Data")
-        judulNew = findViewById(R.id.new_judul)
-        deskripsiNew = findViewById(R.id.new_deskripsi)
-        namaUploadNew = findViewById(R.id.new_uploader)
-        update = update
+        judulNew = judul_new
+        deskripsiNew = deskripsi_new
+        sumberNew = sumber_new
+        update = btn_update
 
         //Mendapatkan Instance autentikasi dan Referensi dari Database
         auth = FirebaseAuth.getInstance();
@@ -41,7 +42,7 @@ class UpdateTutorialActivity : AppCompatActivity() {
             //Mendapatkan Data Mahasiswa yang akan dicek
             cekJudul = judulNew?.getText().toString()
             cekDeskripsi = deskripsiNew?.getText().toString()
-            cekNamaUpload = namaUploadNew?.getText().toString()
+            cekNamaUpload = sumberNew?.getText().toString()
 
             //Mengecek agar tidak ada data yang kosong, saat proses update
             if (isEmpty(cekJudul) || isEmpty(cekDeskripsi) || isEmpty(cekNamaUpload)) {
@@ -53,7 +54,7 @@ class UpdateTutorialActivity : AppCompatActivity() {
                 val getUserID: String = auth?.getCurrentUser()?.getUid().toString()
                 val tutorialBaru = TutorialModel(cekJudul!!, cekDeskripsi!!, cekNamaUpload!!, getUserID)
                 val getKey: String = getIntent().getStringExtra("getPrimaryKey").toString()
-                database!!.child(getUserID).child("Tutorial")
+                database!!.child("Tutorial")
                     .child(getKey).setValue(tutorialBaru)
                     .addOnCompleteListener {
                         Toast.makeText(this, "Data Berhasil Disimpan", Toast.LENGTH_SHORT).show()
@@ -71,7 +72,7 @@ class UpdateTutorialActivity : AppCompatActivity() {
         val getTelp: String  = getIntent().getExtras()?.getString("dataUploader").toString()
         judulNew?.setText(getNama);
         deskripsiNew?.setText(getEmail);
-        namaUploadNew?.setText(getTelp);
+        sumberNew?.setText(getTelp);
         Toast.makeText(this, getNama, Toast.LENGTH_SHORT).show()
 
     }
