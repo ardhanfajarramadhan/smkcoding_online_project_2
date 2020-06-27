@@ -8,14 +8,8 @@ data class TutorialModel(
     var judul : String,
     var deskripsi : String,
     var namaUpload : String,
-    @PrimaryKey var id: String
+    @PrimaryKey var key: String
 ) {
-    fun getKey() {
-    }
-
-    fun setKey(key: String?) {
-
-    }
 
     constructor() : this("","","","")
 }

@@ -22,12 +22,12 @@ class AddTutorialActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_tutorial)
-        getSupportActionBar()?.setTitle("Upload Tutorial")
+        supportActionBar?.title = "Upload Tutorial"
 
         Judul = etJudulAdd
         Deskripsi = etDeskripsiAdd
         NamaUpload = etnamaUploadAdd
-        ref = FirebaseDatabase.getInstance().getReference()
+        ref = FirebaseDatabase.getInstance().reference
         auth = FirebaseAuth.getInstance()
 
         simpan.setOnClickListener {
@@ -36,17 +36,17 @@ class AddTutorialActivity : AppCompatActivity() {
     }
 
     private fun prosesSave() {
-        val getJudul: String = Judul?.getText().toString()
-        val getDeskripsi: String = Deskripsi?.getText().toString()
-        val getNamaUpload: String = NamaUpload?.getText().toString()
-        val getUserID: String = auth?.getCurrentUser()?.getUid().toString()
+        val getJudul: String = Judul?.text.toString()
+        val getDeskripsi: String = Deskripsi?.text.toString()
+        val getNamaUpload: String = NamaUpload?.text.toString()
+        val getUserID: String = auth?.currentUser?.uid.toString()
 
         if (getJudul.isEmpty() && getDeskripsi.isEmpty() && getNamaUpload.isEmpty()) {
-            //Jika kosong, maka akan menampilkan pesan singkat berikut ini.
+
             Toast.makeText(this, "Data tidak boleh ada yang kosong", Toast.LENGTH_SHORT).show()
         } else {
             val tutorial = TutorialModel(getJudul, getDeskripsi, getNamaUpload, getUserID)
-            //struktur databasenya adalah: ID >> Teman >> Key >> Data
+
             ref.child("Tutorial").push().setValue(tutorial).addOnCompleteListener {
                 Toast.makeText(this, "Data Berhasil Disimpan", Toast.LENGTH_SHORT).show()
             }

@@ -29,10 +29,6 @@ class TutorialFragment : Fragment() {
     lateinit var dataTutorial: ArrayList<TutorialModel>
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,32 +42,30 @@ class TutorialFragment : Fragment() {
         getData()
 
         fab.setOnClickListener {
-            val intent = Intent(getActivity(), AddTutorialActivity::class.java)
-            getActivity()?.startActivity(intent)
+            val intent = Intent(activity, AddTutorialActivity::class.java)
+            activity?.startActivity(intent)
         }
     }
 
     private fun getData() {
         //Mendapatkan Referensi Database
-        Toast.makeText(getContext(), "Mohon Tunggu Sebentar...", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Mohon Tunggu Sebentar...", Toast.LENGTH_LONG).show()
         auth = FirebaseAuth.getInstance()
-        ref = FirebaseDatabase.getInstance().getReference()
+        ref = FirebaseDatabase.getInstance().reference
         ref.child("Tutorial").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(getContext(), "Database Error yaa...", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Database Error yaa...", Toast.LENGTH_LONG).show()
             }
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                Inisialisasi ArrayList
                 dataTutorial = java.util.ArrayList<TutorialModel>()
                 for (snapshot in dataSnapshot.children) {
                     val tutorial = snapshot.getValue(TutorialModel::class.java)
-                    tutorial?.setKey(snapshot.key)
+                    tutorial?.key = snapshot.key.toString()
                     dataTutorial.add(tutorial!!)
                 }
                 rv_listTutorialMu.layoutManager = LinearLayoutManager(context)
                 rv_listTutorialMu.adapter = TutorialAdapter(context!!, dataTutorial)
-                Toast.makeText(getContext(), "Data Berhasil Dimuat",
-                    Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Data Berhasil Dimuat", Toast.LENGTH_LONG).show()
             }
         })
     }

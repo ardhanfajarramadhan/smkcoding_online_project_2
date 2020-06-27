@@ -27,38 +27,32 @@ class UpdateTutorialActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_tutorial)
-        getSupportActionBar()?.setTitle("Update Data")
+        supportActionBar?.title = "Update Data"
         judulNew = judul_new
         deskripsiNew = deskripsi_new
         sumberNew = sumber_new
         update = btn_update
 
-        //Mendapatkan Instance autentikasi dan Referensi dari Database
-        auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance().getReference();
-        getData();
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().reference
+        getData()
 
         update.setOnClickListener{
-            //Mendapatkan Data Mahasiswa yang akan dicek
-            cekJudul = judulNew?.getText().toString()
-            cekDeskripsi = deskripsiNew?.getText().toString()
-            cekNamaUpload = sumberNew?.getText().toString()
+            cekJudul = judulNew?.text.toString()
+            cekDeskripsi = deskripsiNew?.text.toString()
+            cekNamaUpload = sumberNew?.text.toString()
 
-            //Mengecek agar tidak ada data yang kosong, saat proses update
             if (isEmpty(cekJudul) || isEmpty(cekDeskripsi) || isEmpty(cekNamaUpload)) {
-                Toast.makeText(this, "Data tidak boleh ada yang kosong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Data tidak boleh ada yang kosong", Toast.LENGTH_SHORT).show()
             } else {
-                /* Menjalankan proses update data.
-                  Method Setter digunakan untuk mendapakan data baru yang diinputkan User.
-                */
-                val getUserID: String = auth?.getCurrentUser()?.getUid().toString()
+                val getUserID: String = auth?.currentUser?.uid.toString()
                 val tutorialBaru = TutorialModel(cekJudul!!, cekDeskripsi!!, cekNamaUpload!!, getUserID)
-                val getKey: String = getIntent().getStringExtra("getPrimaryKey").toString()
+                val getKey: String = intent.getStringExtra("getPrimaryKey").toString()
                 database!!.child("Tutorial")
                     .child(getKey).setValue(tutorialBaru)
                     .addOnCompleteListener {
                         Toast.makeText(this, "Data Berhasil Disimpan", Toast.LENGTH_SHORT).show()
-                        finish();
+                        finish()
                     }
             }
         }
@@ -67,12 +61,12 @@ class UpdateTutorialActivity : AppCompatActivity() {
 
     private fun getData() {
         //Menampilkan data dari item yang dipilih sebelumnya
-        val getNama: String  = getIntent().getStringExtra("dataJudul").toString()
-        val getEmail: String  = getIntent().getExtras()?.getString("dataDeskripsi").toString()
-        val getTelp: String  = getIntent().getExtras()?.getString("dataUploader").toString()
-        judulNew?.setText(getNama);
-        deskripsiNew?.setText(getEmail);
-        sumberNew?.setText(getTelp);
+        val getNama: String  = intent.getStringExtra("dataJudul").toString()
+        val getEmail: String  = intent.extras?.getString("dataDeskripsi").toString()
+        val getTelp: String  = intent.extras?.getString("dataUploader").toString()
+        judulNew?.setText(getNama)
+        deskripsiNew?.setText(getEmail)
+        sumberNew?.setText(getTelp)
         Toast.makeText(this, getNama, Toast.LENGTH_SHORT).show()
 
     }

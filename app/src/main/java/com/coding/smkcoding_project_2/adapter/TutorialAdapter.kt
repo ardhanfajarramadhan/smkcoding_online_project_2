@@ -3,12 +3,15 @@ package com.coding.smkcoding_project_2.adapter
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.coding.smkcoding_project_2.DetailTutorialActivity
 import com.coding.smkcoding_project_2.R
 import com.coding.smkcoding_project_2.UpdateTutorialActivity
 import com.coding.smkcoding_project_2.model.TutorialModel
@@ -30,6 +33,7 @@ class TutorialAdapter (private val context: Context, private val list: ArrayList
         return list.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItem(list)
 
@@ -40,36 +44,41 @@ class TutorialAdapter (private val context: Context, private val list: ArrayList
         lateinit var ref : DatabaseReference
         lateinit var auth: FirebaseAuth
 
+        holder.cv_item_tutorial.setOnClickListener(View.OnClickListener {
+            val bundle = Bundle()
+            bundle.putString("dataJudul", Judul)
+            bundle.putString("dataDeskripsi", Deskripsi)
+            bundle.putString("dataUploader", Uploader)
+            bundle.putString("getPrimaryKey", list[position].key)
+            val intent = Intent(context, DetailTutorialActivity::class.java)
+            intent.putExtras(bundle)
+            context.startActivity(intent)
+        })
+
         holder.cv_item_tutorial.setOnLongClickListener(View.OnLongClickListener { view ->
             val action = arrayOf("Update", "Delete")
             val alert = AlertDialog.Builder(context)
             alert.setItems(action) { dialog, i ->
                 when (i) {
                     0 -> {
-                        /* Berpindah Activity pada halaman layout updateData dan mengambil data pada listMahasiswa, berdasarkan posisinya untuk dikirim pada activity selanjutnya
-                         */
                         val bundle = Bundle()
                         bundle.putString("dataJudul", Judul)
                         bundle.putString("dataDeskripsi", Deskripsi)
                         bundle.putString("dataUploader", Uploader)
-                        bundle.putString("getPrimaryKey", list[position].judul)
+                        bundle.putString("getPrimaryKey", list[position].key)
                         val intent = Intent(context, UpdateTutorialActivity::class.java)
                         intent.putExtras(bundle)
                         context.startActivity(intent)
                     }
                     1 -> {
                         auth = FirebaseAuth.getInstance()
-                        ref = FirebaseDatabase.getInstance().getReference()
+                        ref = FirebaseDatabase.getInstance().reference
                         if (ref != null) {
                             ref.child("Tutorial")
-                                .child(list[position].judul)
+                                .child(list[position].key)
                                 .removeValue()
                                 .addOnSuccessListener {
-                                    Toast.makeText(
-                                        context,
-                                        "Data Berhasil Dihapus",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    Toast.makeText(context,"Data Berhasil Dihapus",Toast.LENGTH_SHORT).show()
                                 }
                         }
                     }
