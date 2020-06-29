@@ -6,6 +6,8 @@ Tugas ke-2 dari SMK Coding
 * ViewPager
 * Fragment
 * ListView
+* Room
+* Firebase
 * REST Api
 
 
@@ -13,4 +15,4 @@ Tugas ke-2 dari SMK Coding
 ![Gambar Preview 1](https://github.com/ardhanfajarramadhan/smkcoding_online_project_2/blob/master/readme/readme.jpg)
 
 ## Link Download Aplikasi
-https://drive.google.com/file/d/1PlohZRKT7Dp6LuoTIRx-SG275REIlqce/view?usp=sharing
+https://drive.google.com/file/d/1FcSQHrhv-7I-iCwYWC5CnRfVN4J8KDsk/view?usp=sharing
