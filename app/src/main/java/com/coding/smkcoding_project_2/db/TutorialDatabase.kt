@@ -10,7 +10,7 @@ import com.coding.smkcoding_project_2.model.TutorialModel
 @Database(entities = arrayOf(TutorialModel::class), version = 1, exportSchema = false)
 public abstract class TutorialDatabase : RoomDatabase() {
 
-    abstract fun tutorialDao(): TutorialDao
+    abstract fun tutorDao(): TutorialDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
@@ -27,11 +27,13 @@ public abstract class TutorialDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     TutorialDatabase::class.java,
-                    "tutorial_database"
-                ).build()
+                    "db.tutorial"
+                ).
+                build()
                 INSTANCE = instance
                 return instance
             }
         }
     }
 }
+

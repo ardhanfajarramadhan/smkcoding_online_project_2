@@ -75,10 +75,16 @@ class ChartFragment : Fragment() {
     private fun setAnyChart(item: IndonesiaDataNew){
         val pie = AnyChart.pie()
         val data: MutableList<DataEntry> = ArrayList()
-        data.add(ValueDataEntry("Positif", item.jumlahKasus ?: 1))
-        data.add(ValueDataEntry("Sembuh", item.sembuh ?: 2))
-        data.add(ValueDataEntry("Meninggal", item.meninggal ?: 3))
-        data.add(ValueDataEntry("Rawat", item.perawatan ?:0))
+        if (item == null){
+            data.add(ValueDataEntry("Positif", 6))
+            data.add(ValueDataEntry("Sembuh", 3))
+            data.add(ValueDataEntry("Meninggal", 1))
+            data.add(ValueDataEntry("Rawat", 2))
+        }
+        data.add(ValueDataEntry("Positif", item.jumlahKasus))
+        data.add(ValueDataEntry("Sembuh", item.sembuh))
+        data.add(ValueDataEntry("Meninggal", item.meninggal))
+        data.add(ValueDataEntry("Rawat", item.perawatan))
 
         pie.data(data)
 

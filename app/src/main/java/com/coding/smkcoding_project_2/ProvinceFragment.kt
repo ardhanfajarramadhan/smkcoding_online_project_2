@@ -88,7 +88,7 @@ class ProvinceFragment : Fragment() {
                 call: Call<ProvinceDataNew>, response:
                 Response<ProvinceDataNew>
             ) {
-//                dismissLoading(swipeRefreshLayout)
+                dismissLoading(swipeRefreshLayout)
                 when {
                     response.isSuccessful ->
                         when {

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coding.smkcoding_project_2.db.TutorialDatabase
 import com.coding.smkcoding_project_2.model.TutorialModel
-import com.coding.smkcoding_project_2.repo.TutorialRepository
+import com.coding.smkcoding_project_2.repository.TutorialRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -17,8 +17,8 @@ class TutorialFragmentViewModel() : ViewModel() {
     lateinit var allTutorials: LiveData<List<TutorialModel>>
 
     fun init(context: Context) {
-        val myFriendDao = TutorialDatabase.getDatabase(context).tutorialDao()
-        repository = TutorialRepository(myFriendDao)
+        val tutorialDao = TutorialDatabase.getDatabase(context).tutorDao()
+        repository = TutorialRepository(tutorialDao)
         allTutorials = repository.allTutorial
     }
 

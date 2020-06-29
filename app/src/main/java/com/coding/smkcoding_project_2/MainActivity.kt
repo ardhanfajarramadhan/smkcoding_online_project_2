@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
 import com.coding.smkcoding_project_2.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -36,12 +39,32 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item!!.itemId) {
             R.id.help -> moveToReadMe()
+            R.id.logOut -> logout()
         }
-        return super.onOptionsItemSelected(item)
+        return true
     }
 
-    private fun moveToReadMe(){
+
+
+    private fun moveToReadMe() {
         val intent = Intent(this, ReadMeActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun logout() {
+        val alert = AlertDialog.Builder(this)
+        alert.setTitle("Logout")
+        alert.setMessage("Apakah anda yakin ingin logout?")
+        alert.setPositiveButton("Ya"){dialog, i ->
+            FirebaseAuth.getInstance().signOut()
+            val i = Intent(this, LoginActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            Toast.makeText(applicationContext, "Berhasil Logout", Toast.LENGTH_SHORT).show()
+            startActivity(i)
+        }
+        alert.setNegativeButton("Tidak"){dialog, i ->
+            Toast.makeText(this, "Logout dibatalkan", Toast.LENGTH_SHORT).show()
+        }
+        alert.show()
     }
 }

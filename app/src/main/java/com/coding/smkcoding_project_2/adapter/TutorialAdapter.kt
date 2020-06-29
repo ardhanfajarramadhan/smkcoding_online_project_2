@@ -22,7 +22,7 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_tutorial.*
 import kotlin.collections.ArrayList
 
-class TutorialAdapter (private val context: Context, private val list: ArrayList<TutorialModel>) :
+class TutorialAdapter (private val context: Context, private val list: MutableList<TutorialModel>) :
     RecyclerView.Adapter<TutorialAdapter.ViewHolder> (){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
@@ -35,7 +35,7 @@ class TutorialAdapter (private val context: Context, private val list: ArrayList
 
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(list)
+        holder.bindItem(list as ArrayList<TutorialModel>)
 
         val Judul: String? = list[position].judul
         val Deskripsi: String? = list[position].deskripsi

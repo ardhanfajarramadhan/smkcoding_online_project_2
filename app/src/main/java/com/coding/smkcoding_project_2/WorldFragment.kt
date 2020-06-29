@@ -85,7 +85,7 @@ class WorldFragment : Fragment() {
                 call: Call<getGlobalDataNew>,
                 response: Response<getGlobalDataNew>
             ) {
-//                dismissLoading(swipeRefreshLayout)
+                dismissLoading(swipeRefreshLayout)
                 when {
                     response.isSuccessful ->
                         when {

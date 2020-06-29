@@ -1,4 +1,4 @@
-package com.coding.smkcoding_project_2.repo
+package com.coding.smkcoding_project_2.repository
 
 import androidx.lifecycle.LiveData
 import com.coding.smkcoding_project_2.dao.TutorialDao

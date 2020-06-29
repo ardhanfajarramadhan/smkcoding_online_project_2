@@ -6,7 +6,9 @@ import android.text.TextUtils.isEmpty
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.coding.smkcoding_project_2.model.TutorialModel
+import com.coding.smkcoding_project_2.viewmodel.TutorialUpdateViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -24,10 +26,15 @@ class UpdateTutorialActivity : AppCompatActivity() {
     private var cekDeskripsi: String? = null
     private var cekNamaUpload: String? = null
 
+    private val viewModel by viewModels<TutorialUpdateViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_tutorial)
         supportActionBar?.title = "Update Data"
+
+        viewModel.init(this)
+
         judulNew = judul_new
         deskripsiNew = deskripsi_new
         sumberNew = sumber_new
@@ -45,12 +52,12 @@ class UpdateTutorialActivity : AppCompatActivity() {
             if (isEmpty(cekJudul) || isEmpty(cekDeskripsi) || isEmpty(cekNamaUpload)) {
                 Toast.makeText(this, "Data tidak boleh ada yang kosong", Toast.LENGTH_SHORT).show()
             } else {
-                val getUserID: String = auth?.currentUser?.uid.toString()
-                val tutorialBaru = TutorialModel(cekJudul!!, cekDeskripsi!!, cekNamaUpload!!, getUserID)
                 val getKey: String = intent.getStringExtra("getPrimaryKey").toString()
+                val tutorialBaru = TutorialModel(cekJudul!!, cekDeskripsi!!, cekNamaUpload!!, getKey)
                 database!!.child("Tutorial")
                     .child(getKey).setValue(tutorialBaru)
                     .addOnCompleteListener {
+                        viewModel.updateData(tutorialBaru)
                         Toast.makeText(this, "Data Berhasil Disimpan", Toast.LENGTH_SHORT).show()
                         finish()
                     }

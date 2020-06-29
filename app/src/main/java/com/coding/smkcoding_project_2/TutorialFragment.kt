@@ -26,7 +26,9 @@ class TutorialFragment : Fragment() {
 
     lateinit var ref : DatabaseReference
     lateinit var auth: FirebaseAuth
-    lateinit var dataTutorial: ArrayList<TutorialModel>
+    var dataTutorial: MutableList<TutorialModel> = ArrayList()
+    private val viewModel by viewModels<TutorialFragmentViewModel>()
+    private var adapter: TutorialAdapter? = null
 
 
     override fun onCreateView(
@@ -39,12 +41,24 @@ class TutorialFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        init()
         getData()
+
+        viewModel.init(requireContext())
+        viewModel.allTutorials.observe(viewLifecycleOwner, Observer { tutorialY ->
+            // Update the cached copy of the words in the adapter.
+            tutorialY?.let { adapter }
+        })
 
         fab.setOnClickListener {
             val intent = Intent(activity, AddTutorialActivity::class.java)
             activity?.startActivity(intent)
         }
+    }
+
+    private fun init() {
+        rv_listTutorialMu.layoutManager = LinearLayoutManager(context)
+        rv_listTutorialMu.adapter = TutorialAdapter(requireContext(), dataTutorial)
     }
 
     private fun getData() {
@@ -57,15 +71,16 @@ class TutorialFragment : Fragment() {
                 Toast.makeText(context, "Database Error yaa...", Toast.LENGTH_LONG).show()
             }
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                dataTutorial = java.util.ArrayList<TutorialModel>()
+                dataTutorial = ArrayList()
                 for (snapshot in dataSnapshot.children) {
+                    //Mapping data pada DataSnapshot ke dalam objek mahasiswa
                     val tutorial = snapshot.getValue(TutorialModel::class.java)
-                    tutorial?.key = snapshot.key.toString()
+                    //Mengambil Primary Key, digunakan untuk proses Update dan Delete
+                    tutorial?.key = (snapshot.key!!.toString())
+                    init()
                     dataTutorial.add(tutorial!!)
                 }
-                rv_listTutorialMu.layoutManager = LinearLayoutManager(context)
-                rv_listTutorialMu.adapter = TutorialAdapter(context!!, dataTutorial)
-                Toast.makeText(context, "Data Berhasil Dimuat", Toast.LENGTH_LONG).show()
+                viewModel.insertAll(dataTutorial)
             }
         })
     }
@@ -73,6 +88,30 @@ class TutorialFragment : Fragment() {
         super.onDestroy()
         this.clearFindViewByIdCache()
     }
+
+    fun onDeleteData(data: TutorialModel, position: Int) {
+        /*
+         * Kode ini akan dipanggil ketika method onDeleteData
+         * dipanggil dari adapter pada RecyclerView melalui interface.
+         * kemudian akan menghapus data berdasarkan primary key dari data tersebut
+         * Jika berhasil, maka akan memunculkan Toast
+         */
+        auth = FirebaseAuth.getInstance()
+        val getUserID: String = auth.currentUser?.uid.toString()
+        if (ref != null) {
+            ref.child(getUserID)
+                .child("Tutorial")
+                .child(data.key.toString())
+                .removeValue()
+                .addOnSuccessListener {
+                    Toast.makeText(context, "Data Berhasil Dihapus", Toast.LENGTH_SHORT).show()
+                    viewModel.delete(data)
+                }
+        } else {
+            Toast.makeText(context, data.key.toString(), Toast.LENGTH_LONG).show()
+        }
+    }
+
 }
 
 
